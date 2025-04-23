@@ -8,14 +8,13 @@ char *ft_strdup(const char *src)
 	char *duplicate; 
 	
 	while(src[i] != '\n')
-	{
 		length++;
-	}
+
 	duplicate = (char *)malloc((length + 1));
+
 	if (duplicate == NULL)
-	{
 		return NULL;
-	}
+
 	while (i < length)
 	{
 		duplicate[i] = src[i];
