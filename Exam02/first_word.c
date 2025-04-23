@@ -1,18 +1,16 @@
 #include <unistd.h>
 
-void printword(char *str)
+void first_word(char *str)
 {
 	int i = 0;
 	int word = 0;
 
-	while(str[i])
+	while (str[i] != '\0')
 	{
 			if (str[i] == ' ' || str[i] == '\t')
 			{
 				if (word == 1)
-				{
 					break;
-				}
 			}
 			else
 			{
@@ -26,8 +24,6 @@ void printword(char *str)
 int main (int argc, char *argv[])
 {
 	if (argc == 2)
-	{
-		printword(argv[1]);
-	}
+		first_word(argv[1]);
 	write(1, "\n", 1);
 }
