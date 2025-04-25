@@ -5,6 +5,9 @@ void first_word(char *str)
 	int i = 0;
 	int word = 0;
 
+	while (str[i] == ' ' || str[i] == '\t')
+		i++;
+
 	while (str[i] != '\0')
 	{
 			if (str[i] == ' ' || str[i] == '\t')
