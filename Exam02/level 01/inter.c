@@ -1,23 +1,23 @@
 #include <unistd.h>
 
-void inter(char *a, char *b)
+void inter(char *s1, char *s2)
 {
-	char ascii[256];
+	char ascii[256] = {0};
 	int i = 0;
 
-	while(b[i] != '\0')
+	while(s2[i] != '\0')
 	{
-		ascii[(int)b[i]] = 1;
+		ascii[(int)s1[i]] = 1;
 		i++;
 	}
 
 	i = 0;
-	while(a[i] != '\0')
+	while(s1[i] != '\0')
 	{
-		if (ascii[(int)a[i]] == 1)
+		if (ascii[(int)s1[i]] == 1)
 		{
-			write(1, &a[i], 1);
-			ascii[(int)a[i]] = 2;
+			write(1, &s1[i], 1);
+			ascii[(int)s1[i]] = 2;
 		}
 		i++;
 	}	
