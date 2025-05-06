@@ -7,7 +7,7 @@ char *ft_strdup(const char *src)
 	int length = 0;
 	char *duplicate; 
 	
-	while(src[i] != '\n')
+	while(src[i] != '\0')
 		length++;
 
 	duplicate = (char *)malloc((length + 1));
