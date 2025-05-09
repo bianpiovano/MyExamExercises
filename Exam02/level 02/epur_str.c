@@ -3,31 +3,20 @@
 void epur_str(char *str)
 {
 	int i = 0;
-	int word = 0;
-	int end = 0;
-	
-	while(str[i] == ' ' || str[i] == '\t')
-		i++;
-	
-	end = i;
-	while (str[end])
-		end++;
+	int flag = 0;
 
-	while (end > i && (str[end - 1] == ' ' || str[end - 1] == '\t'))
-		end--;
-	
-	while (i < end)
+	while(str[i] == ' ' || str[i] == '\t')
+			i++;
+	while(str[i] != '\0')
 	{
 		if (str[i] == ' ' || str[i] == '\t')
+			flag = 1;
+		if (str[i] != ' ' && str[i] != '\t')
 		{
-			if (word)
+			if (flag == 1)
 				write(1, " ", 1);
-			word = 0;
-		}
-		else
-		{
+			flag = 0;
 			write(1, &str[i], 1);
-			word = 1;
 		}
 		i++;
 	}
