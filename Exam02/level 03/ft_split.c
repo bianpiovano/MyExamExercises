@@ -1,95 +1,52 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void	free_array(char **array, int w)
+char *ft_strncpy(char *s1, char *s2, int n)
 {
-	while (w >= 0)
-		free(array[w--]);
-	free(array);
-}
-
-char	**ft_split(char *str)
-{
-	int i;
-	int j;
-	int words;
-	int w;
-	char	**array;
-
-	// Contar palabras
-	i = 0;
-	words = 0;
-	while (str[i])
+	int i = 0;
+	while (s2[i] && i < n)
 	{
-		if (str[i] > 32 && (i == 0 || str[i - 1] <= 32))
-			words++;
+		s1[i] = s2[i];
 		i++;
 	}
+	s1[i] = '\0';
+	return s1;
+}
 
-	if (words == 0)
-		return (NULL);
+char **ft_split(char *str)
+{
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int count = 0;
 
-	// Reservar memoria para el array de palabras
-	array = malloc(sizeof(char *) * (words + 1));
-	if (!array)
-	{
-		return (NULL);
-	}
+while (str[i] != '\0')
+{
+	while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
+		i++;
+	if (str[i])
+		count++;
+	while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
+		i++;
+}
 
+	char **result = (char **)malloc(sizeof(char *) * (count + 1));
+	
 	i = 0;
-	w = 0;
-	while (w < words)
+
+	while (str[i] != '\0')
 	{
-		// Saltar espacios
-		while (str[i] && str[i] <= 32)
+		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
 			i++;
 		j = i;
-
-		// Encontrar fin de palabra
-		while (str[i] && str[i] > 32)
+		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
 			i++;
-
-		// Reservar memoria para la palabra
-		array[w] = malloc(i - j + 1);
-		if (!array[w])
+		if (i > j)
 		{
-			free_array(array, w - 1);
-			return (NULL);
+			result[k] = (char *)malloc(sizeof(char) * (i - j + 1));
+			ft_strncpy(result[k++], &str[j], i - j);
 		}
-
-		// Copiar palabra
-		int k = 0;
-		while (j < i)
-			array[w][k++] = str[j++];
-		array[w][k] = '\0';
-		w++;
 	}
-	array[words] = NULL;
-	return (array);
+	result[k] = NULL;
+	return result;
 }
-
-int main()
-{
-	char **resultado = ft_split("  hola  mundo  42  ");
-	int i = 0;
-
-	// Verificar si `ft_split` devolvió algo
-	if (!resultado)
-	{
-		return 1;
-	}
-
-	// Imprimir el resultado
-	while (resultado[i])
-	{
-		printf("Palabra %d: %s\n", i, resultado[i]);
-		free(resultado[i]);
-		i++;
-	}
-	free(resultado);
-	return 0;
-}
-
-
-
-

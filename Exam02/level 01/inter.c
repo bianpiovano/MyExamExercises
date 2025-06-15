@@ -7,7 +7,7 @@ void inter(char *s1, char *s2)
 
 	while(s2[i] != '\0')
 	{
-		ascii[(int)s1[i]] = 1;
+		ascii[(int)s2[i]] = 1;
 		i++;
 	}
 

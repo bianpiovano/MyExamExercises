@@ -33,5 +33,3 @@ int ft_atoi_base(const char *str, int str_base)
 		result = result * str_base + digit;
 		i++;
 	}
-	return result * sign;
-}

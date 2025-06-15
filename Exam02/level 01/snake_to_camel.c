@@ -3,24 +3,18 @@
 void snake_to_camel(char *str)
 {
 	int i = 0;
-        char c;
-        
+	char c;
+
 	while (str[i] != '\0')
 	{
 		if (str[i] == '_')
 		{
 			i++;
-			if (str[i] >= 'a' && str[i] <= 'z')
-			{
-				c = str[i] - 32;
-				write(1, &c, 1);
-			}
+			c = str[i] - 32;		
 		}
 		else
-		{
 			c = str[i];
-			write(1, &c, 1);
-		}
+		write(1, &c, 1);
 		i++;
 	}
 }
