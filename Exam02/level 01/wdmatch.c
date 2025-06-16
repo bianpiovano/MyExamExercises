@@ -1,32 +1,28 @@
 #include <unistd.h>
 
-char *ft_strchr(const char *s, int c)
+void ft_putstr(char *str)
 {
-    while (*s)
-    {
-        if (*s == (char)c)
-        {
-            return ((char *)s);
-        }
-        s++;
-    }
-    return NULL;
+	int i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 }
 
 void wdmatch(char *s1, char *s2)
 {
 	int i = 0;
-	char *pos = s2;
+	int j = 0;
 
-	while (s1[i])
+	while (s2[j] != '\0')
 	{
-		pos = ft_strchr(pos, s1[i]);
-		if (!pos)
-			return;
-		pos++;
-		i++;
+		if (s1[i] == s2[j])
+			i++;
+		j++;
 	}
-	write(1, s1, i);
+	if (s1[i] == '\0')
+		ft_putstr(s1);
 }
 
 int main(int argc, char *argv[])
