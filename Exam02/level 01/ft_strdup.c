@@ -4,23 +4,21 @@
 char *ft_strdup(const char *src) 
 {
 	int	i = 0;
-	int length = 0;
-	char *duplicate; 
+	char *duplicate;
 	
 	while(src[i] != '\0')
-		length++;
+		i++;
 
-	duplicate = (char *)malloc((length + 1));
-
+	duplicate = malloc(i + 1);
 	if (duplicate == NULL)
 		return NULL;
-
-	while (i < length)
+	
+	i = 0;
+	while (src[i] != '\0')
 	{
 		duplicate[i] = src[i];
 		i++;
 	}
-	duplicate[i] = '\n';
-
+	duplicate[i] = '\0';
 	return duplicate;
 }
